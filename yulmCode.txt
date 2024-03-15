@@ -1,0 +1,62 @@
+[<<Abstract>>Entity]^[Hero]
+[<<Abstract>>Hero]^[Monster]
+[<<Abstract>>Hero]^[Weapon]
+[<<Abstract>>Hero]^[Acessories]
+[<<Abstract>>Hero]^[Head]
+[<<Abstract>>Hero]^[Body]
+[<<Abstract>>Hero]^[Cloak]
+[Weapon]^[<<Abstract>>Item]
+[Acessories]^[<<Abstract>>Item]
+[Head]^[<<Abstract>>Item]
+[Body]^[<<Abstract>>Item]
+[Cloak]^[<<Abstract>>Item]
+[Weapon]^[<<Interface>>ItemMenu]
+[Acessories]^[<<Interface>>ItemMenu]
+[Head]^[<<Interface>>ItemMenu]
+[Body]^[<<Interface>>ItemMenu]
+[Cloak]^[<<Interface>>ItemMenu]
+[<<Interface>>BattleActions]^[<<Abstract>>Entity]
+[Hero]^[Battle]
+[Monster]^[Battle]
+[Menu]^[Stage]
+[Menu]^[Battle]
+[Menu]^[Utils]
+[Main]^[Menu]
+
+
+// calcDamage return damage int; calcGuard return percent damaged 0 - 100
+[<<Interface>>BattleActions| | calcDamage(): int; calcPercentGuard(): int]
+
+[<<Abstract>>Entity| name: string; life: int; strength: int; intelligence: int; dexterity: int; damage: int; resistence: int| calcDamage(): int; calcGuard(): int; showItem(): void]
+
+[Hero| weapon: Weapon; acessorie1: Acessories; acessorie2: Acessories; head: Head; body: Body; cloak: Cloak; score: int]
+
+[Monster| points: int; asciiArt: string; multiplierStatus: double; loot1: Item; loot2: Item| drawAsciiArt(): void]
+
+[Battle| hero: Hero; monster: Monster; loot1: Item; loot2: Item]
+
+[<<Abstract>>Item| name: string; type: int; attribute: int; value: int; multStatus: int| ifNUll(): int; getNameAttribute(): string; equip(): void; unequip(): void; switch(): void]
+
+[<<Interface>>ItemMenu| | showItem(): void]
+
+[Weapon| | showItem()]
+
+[Acessories| | showItem()]
+
+[Head| | showItem()]
+
+[Body| | showItem()]
+
+[Cloak| | showItem()]
+
+[Battle| initiative: int; hero: Hero; monster: Monster| attack(): void]
+
+// difficult multiplirItemStatus will be default int 100 - 1 like percent
+[Stage| level: int; difficult: int; multiplierItemStatus: int| randomEvent(): void; randomItem(): void; randomMonster(): void]
+
+[Menu| mode: int; stage: Stage; battle: Battle| mBattle(): void; mIdle(): void; mChar(): void; mOptions(): void; mScore(): void; mWin(): void; mLose(): void]
+
+//  realmente interface?
+[<<Interface>>Utils| | clearTerminal(): void; pressAnyKeyToContinue(): void] 
+
+[Main| gameStart()]
