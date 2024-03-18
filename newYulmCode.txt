@@ -1,0 +1,46 @@
+[<<Abstract>>Entity]^[Hero]
+[<<Abstract>>Entity]^[Monster]
+[<<Interface>>BattleActions]^[Battle]
+[Hero]^[Battle]
+[Battle]^[Monster]
+[Battle]^[PowerUps]
+[Menu]^[Stage]
+[Menu]^[Battle]
+[Menu]^[Utils]
+[Main]^[Menu]
+
+
+// calcDamage return damage int; calcGuard return percent damaged 0 - 100
+[<<Interface>>BattleActions| | calcDamage(): int; calcPercentGuard(): int]
+
+[<<Abstract>>Entity| name: string; life: int; strength: int; intelligence: int; dexterity: int; damage: int; resistence: int]
+
+[Monster| points: int; asciiArt: string; multiplierStatus: int; lootPowerUp1: PowerUps; lootPowerUp2: PowerUps| drawAsciiArt(): void]
+
+[Battle| initiative: int; hero: Hero; monster: Monster; powerUp1: PowerUps; powerUp2: PowerUps| calcDamage(): int; calcGuard(): int; applyPowerUp(): void]
+
+// difficult multiplirItemStatus will be default int 100 - 1 like percent
+[Stage| level: int; difficult: int; multiplierItemStatus: int| randomEvent(): void; randomPowerUp(): void; randomMonster(): void]
+
+[Menu| mode: int; stage: Stage; battle: Battle| mBattle(): void; mIdle(): void; mChar(): void; mOptions(): void; mScore(): void; mWin(): void; mLose(): void]
+
+//  realmente interface?
+[<<Interface>>Utils| | clearTerminal(): void; pressAnyKeyToContinue(): void] 
+
+[Main| gameStart()]
+
+// powerUps
+[PowerUps| attributeIncrease: int; valueIncrease: int; attributeDecrease: int; valueDecrease: int; multiplierStatus: int]
+
+[Hero| powerUp1: PowerUps; powerUp2: PowerUps]
+
+
+
+
+
+
+
+[<<Abstract>>Entity| life: int; strenght: int; intelligence: int; dexterity: int; damage: int; resistence: int]
+
+[<<Abstract>>Item| attribute: int; damage: int]
+
