@@ -1,6 +1,6 @@
 #ifndef Hero_hpp
 #define Hero_hpp
-#include "../Entity/Entity.hpp";
+#include "../Entity/Entity.hpp"
 
 class Hero : public Entity {
     private:

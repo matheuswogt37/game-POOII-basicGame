@@ -1,4 +1,4 @@
-#include "./Entity.hpp";
+#include "./Entity.hpp"
 
 Entity::Entity(std::string name, int life, int stre, int inte, int dext, int dama, int resi) {
     this->name = name;
@@ -9,8 +9,6 @@ Entity::Entity(std::string name, int life, int stre, int inte, int dext, int dam
     this->damage = dama;
     this->resistence = resi;
 }
-
-Entity::~Entity(){};
 
 std::string Entity::getName() {
     return this->name;

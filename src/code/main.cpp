@@ -2,13 +2,13 @@
 // sleep in linux
 #include <unistd.h>
 
-#include "./Battle/Battle.hpp";
-#include "./Hero/Hero.hpp";
-#include "./Monster/Monster.hpp";
-#include "./Entity/Entity.hpp";
-#include "./Sword/Sword.hpp";
-#include "./Staff/Staff.hpp";
-#include "./Bow/Bow.hpp";
+#include "./Battle/Battle.hpp"
+#include "./Hero/Hero.hpp"
+#include "./Monster/Monster.hpp"
+#include "./Entity/Entity.hpp"
+#include "./Sword/Sword.hpp"
+#include "./Staff/Staff.hpp"
+#include "./Bow/Bow.hpp"
 
 struct StructRandMonster{
     std::string name;
@@ -17,12 +17,12 @@ struct StructRandMonster{
 
 void clearConsole()
 {
-    system("cls");
+    system("clear");
 }
 
-void randMonster(StructRandMonster rand) {
+void randMonster(StructRandMonster *rand) {
                             // balaced        str         dex        int       freak
-    std::string names[5] = {"chimera ant", "minotaur", "kappa", "dark mage", "goblin"};
+    const char* names[5] = {"chimera ant", "minotaur", "kappa", "dark mage", "goblin"};
     int life[5] = {60, 100, 35, 25, 20};
     int stre[5] = {20, 40, 10, 5, 5};
     int inte[5] = {20, 5, 10, 45, 2};
@@ -33,14 +33,14 @@ void randMonster(StructRandMonster rand) {
 
     int nRand = std::rand() % 5;
 
-    rand.name = names[nRand];
-    rand.life = life[nRand];
-    rand.stre = stre[nRand];
-    rand.inte = inte[nRand];
-    rand.dext = dext[nRand];
-    rand.dama = dama[nRand];
-    rand.resi = resi[nRand];
-    rand.typeDamage = typeDamage[nRand];
+    rand->name = names[nRand];
+    rand->life = life[nRand];
+    rand->stre = stre[nRand];
+    rand->inte = inte[nRand];
+    rand->dext = dext[nRand];
+    rand->dama = dama[nRand];
+    rand->resi = resi[nRand];
+    rand->typeDamage = typeDamage[nRand];
 }
 
 int main()
@@ -104,15 +104,15 @@ int main()
 
     ptrHero->calcFDamage();
     ptrHero->calcFGuard();
-    ptrMonster->calcFDamage();
-    ptrMonster->calcFGuard();
 
     hAlive = true;
     while (hAlive)
     {
         clearConsole();
-        randMonster(randomizerMonster);
+        randMonster(&randomizerMonster);
         ptrMonster = new Monster(randomizerMonster.name, randomizerMonster.life, randomizerMonster.stre, randomizerMonster.inte, randomizerMonster.dext, randomizerMonster.dama, randomizerMonster.resi, randomizerMonster.typeDamage);
+        ptrMonster->calcFDamage();
+        ptrMonster->calcFGuard();
         std::cout << "you will fight against " << ptrMonster->getName() << "!\n";
 
         sleep(3);
@@ -123,7 +123,7 @@ int main()
         if (hAlive) {
             std::cout << "your " << ptrHero->getName() << " win against " << ptrMonster->getName() << "! good job!\n";
             sleep(3);
-            std::cout << "chose\n1 - battle another monster\n2 - end";
+            std::cout << "chose\n1 - battle another monster\n2 - end\n";
             std::cin >> cmd;
             if (cmd == 2) {
                 hAlive = false;

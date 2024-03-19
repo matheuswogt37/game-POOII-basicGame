@@ -1,7 +1,7 @@
 #ifndef Entity_hpp
 #define Entity_hpp
 #include <iostream>
-#include "../Item/Item.hpp";
+#include "../Item/Item.hpp"
 
 class Entity {
     private:

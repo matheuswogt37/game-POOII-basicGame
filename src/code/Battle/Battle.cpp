@@ -1,4 +1,4 @@
-#include "./Battle.hpp";
+#include "./Battle.hpp"
 
 Battle::Battle(int hFDamage, int hFGuard, int hLife, int mFDamage, int mFGuard, int mLife) {
     this->heroFDamage = hFDamage;

@@ -1,4 +1,4 @@
-#include "./Item.hpp";
+#include "./Item.hpp"
 
 Item::Item(std::string n, int att, int val, int mult)
 {
@@ -24,6 +24,7 @@ std::string Item::getNameAttribute()
         break;
 
     default:
+        return "";
         break;
     }
 }

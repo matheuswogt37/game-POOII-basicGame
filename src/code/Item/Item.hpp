@@ -1,8 +1,8 @@
 #ifndef Item_hpp
 #define Item_hpp
 #include <iostream>
-#include "../Collected/Collected.hpp";
-#include "../ItemMenu/ItemMenu.hpp";
+#include "../Collected/Collected.hpp"
+#include "../ItemMenu/ItemMenu.hpp"
 
 class Item : public Collected, ItemMenu{
     private:

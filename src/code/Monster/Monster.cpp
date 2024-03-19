@@ -1,4 +1,4 @@
-#include "./Monster.hpp";
+#include "./Monster.hpp"
 
 Monster::Monster(std::string name, int life, int stre, int inte, int dext, int dama, int resi, int typeDamage) : Entity(name, life, stre, inte, dext, dama, resi)
 {

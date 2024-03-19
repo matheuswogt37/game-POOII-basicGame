@@ -1,6 +1,6 @@
 #ifndef Sword_hpp
 #define Sword_hpp
-#include "../Item/Item.hpp";
+#include "../Item/Item.hpp"
 
 class Sword : public Item {
     public:

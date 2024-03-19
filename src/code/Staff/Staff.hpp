@@ -1,6 +1,6 @@
 #ifndef Staff_hpp
 #define Staff_hpp
-#include "../Item/Item.hpp";
+#include "../Item/Item.hpp"
 
 class Staff : public Item {
     public:

@@ -1,7 +1,7 @@
 #ifndef Monster_hpp
 #define Monster_hpp
 #include <iostream>
-#include "../Entity/Entity.hpp";
+#include "../Entity/Entity.hpp"
 
 class Monster : public Entity{
     private:

@@ -1,44 +1,32 @@
 [<<Abstract>>Entity]^[Hero]
 [<<Abstract>>Entity]^[Monster]
-[Weapon]^[<<Abstract>>Item]
-[Acessories]^[<<Abstract>>Item]
-[Weapon]^[<<Interface>>ItemMenu]
-[Acessories]^[<<Interface>>ItemMenu]
-[<<Interface>>BattleActions]^[Battle]
 [Hero]^[Battle]
 [Monster]^[Battle]
-[Menu]^[Battle]
 [Item]^[Collected]
+[Bow]^[<<Abstract>>Item]
+[Staff]^[<<Abstract>>Item]
+[Sword]^[<<Abstract>>Item]
+[Bow]^[<<Interface>>ItemMenu]
+[Staff]^[<<Interface>>ItemMenu]
+[Sword]^[<<Interface>>ItemMenu]
+[<<Abstract>>Item]^[<<Interface>>ItemMenu]
 
-// calcDamage return damage int; calcGuard return percent damaged 0 - 100
-[<<Interface>>BattleActions| | calcDamage(): int; calcPercentGuard(): int]
+[Battle| initiative: int; heroFDamage: int; heroFGuard: int; heroLife: int; monsterFDamage: int; mosnterFGuard: int; monsterLife: int| Battle(); randInitiative(): int; randCriticalDam(): int; fight(): bool]
 
-[<<Abstract>>Entity| name: string; life: int; strength: int; intelligence: int; dexterity: int; damage: int; resistence: int; finalDamage: int; finalGuard: int| calcFDamage(): int; calcFGuard(): int]
-
-[Hero| weapon: Item; acessorie1: Item; acessorie2: Item; score: int| showItem(): void; alterStatus(int type, int value): void; calcFDamage(): int; calcFGuard(): int; equip(): void; unequip(): void; swap(): void]
-
-[Monster| typeDamage: int; points: int; asciiArt: string; multiplierStatus: double| drawAsciiArt(): void; calcFDamage(): int; calcFGuard(): int]
-
-[Battle| initiative: int; hero: Hero; monster: Monster| calcDamage(): int; calcGuard(): int]
-
-[<<Abstract>>Item| name: string; attribute: int; value: int; multStatus: int; taked: bool| ifNUll(): int; getNameAttribute(): string; takeItem(): void; discardItem(): void]
+[<<Interface>>Collected| | takeItem(): void; discardItem(): void]
 
 [<<Interface>>ItemMenu| | showItem(): void]
 
-[Weapon| | showItem()]
+[<<Abstract>>Item| name: string; attribute: int; value: int; multStatus: int; taked: bool| Item(); ifNull(): bool; getNameAttribute(): string; takeItem(): void; discardItem(): void; getName(): string; getAttribute(): int; getValue(): int; getMultStatus(): int; getTaked(): bool; showItem(): void]
 
-[Acessories| | showItem()]
+[<<Abstract>>Entity| name: string; life: int; intelligence: int; dexterity: int; damage: int; resistenve: int; finalDamage: int; finalGuard: int| Entity(); getLife(): int; setLife(): void; getStrenght(): int; setStrenght(): void; getIntelligence(): int; setIntelligence(): void; getDexterity(): int; setDexterity(): void; getResistence(): int; setResistence(): void; getFDamage(): int; setFDamage(): void; getFGuard(): int; setFGuard(): void; calcFDamage(): void; calcFGuard(): void]
 
+[Hero| weapon: *Item; accessorie1: *Item; accessorie2: *Item; score: int| Hero(); equipW(): void; equipAcc(): void; unequipW(): void; unequipAcc(): void; calcFDamage(): void; calcFGuard(): void; setWeapon(): void; setAccessorie1(): void; setAccessorie2(): void]
 
-[<<Interface>>Collected| takeItem(): void; discardItem(): void] 
+[Monster| typeDamage: int| Monster(); calcFDamage(): void; calcFGuard(): void]
 
-[Main| gameStart()]
+[Bow| | Bow(); showItem(): void]
 
+[Staff| | Staff(); showItem(): void]
 
-
-
-
-
-
-
-
+[Sword| | Sword(); showItem(): void]

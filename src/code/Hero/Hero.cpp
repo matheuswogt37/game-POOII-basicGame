@@ -1,4 +1,4 @@
-#include "./Hero.hpp";
+#include "./Hero.hpp"
 
 Hero::Hero(std::string name, int life, int stre, int inte, int dext, int dama, int resi) : Entity(name, life, stre, inte, dext, dama, resi)
 {
@@ -11,20 +11,24 @@ Hero::~Hero(){};
 void Hero::setAccessorie1(Item *item)
 {
     // remove old accessories status
-    switch (this->accessorie1->getAttribute())
+    if (this->accessorie1 != NULL)
     {
-    case 1: // str
-        this->setStrenght((this->getStrenght() - this->accessorie1->getValue()));
-        break;
-    case 2: // int
-        this->setIntelligence((this->getIntelligence() - this->accessorie1->getValue()));
-        break;
-    case 3: // dex
-        this->setDexterity((this->getDexterity() - this->accessorie1->getValue()));
-        break;
+        this->accessorie1->discardItem();
+        switch (this->accessorie1->getAttribute())
+        {
+        case 1: // str
+            this->setStrenght((this->getStrenght() - this->accessorie1->getValue()));
+            break;
+        case 2: // int
+            this->setIntelligence((this->getIntelligence() - this->accessorie1->getValue()));
+            break;
+        case 3: // dex
+            this->setDexterity((this->getDexterity() - this->accessorie1->getValue()));
+            break;
 
-    default:
-        break;
+        default:
+            break;
+        }
     }
 
     // up new accessories status
@@ -43,8 +47,6 @@ void Hero::setAccessorie1(Item *item)
     default:
         break;
     }
-
-    this->accessorie1->discardItem();
     this->accessorie1 = item;
     this->accessorie1->takeItem();
 }
@@ -108,6 +110,7 @@ void Hero::equipW(Item *item)
 
 void Hero::equipAcc(Item *item)
 {
+
     if (this->accessorie1 == NULL)
     {
         this->setAccessorie1(item);
@@ -163,23 +166,29 @@ void Hero::calcFDamage()
         case 3:
             attVal = this->getDexterity();
             break;
-        
+
         default:
             break;
         }
         this->setFDamage((this->getDamage() + attVal + this->weapon->getValue()));
-    } else {
+    }
+    else
+    {
         this->setFDamage(((this->getStrenght() + this->getIntelligence() + this->getDexterity()) / 3));
     }
 }
 
-void Hero::calcFGuard() {
+void Hero::calcFGuard()
+{
     this->setFGuard(this->getResistence());
 }
 
 void Hero::setWeapon(Item *item)
 {
-    this->weapon->discardItem();
+    if (this->weapon != NULL)
+    {
+        this->weapon->discardItem();
+    }
     this->weapon = item;
     this->weapon->takeItem();
 }
